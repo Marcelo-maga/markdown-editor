@@ -4,6 +4,7 @@
   "scripts": {
     "dev:electron": "yarn electron main.ts",
     "dev:react": "vite renderer/",
+    "dev": "concurrently --kill-others \"yarn dev:react\" \"yarn dev:electron\"",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

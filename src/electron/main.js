@@ -10,11 +10,14 @@ function createWindow () {
     minWidth: 1050,
     minHeight: 600,
     webPreferences: {
+      nativeWindowOpen: true,
       nodeIntegration: true
     }
   })
   mainWindow.loadURL(
-    isDev ? 'http://localhost:3000' : `file://${path.resolve(__dirname, '..', 'build', 'index.html')}`
+    isDev
+      ? 'http://localhost:3000'
+      : `file://${path.resolve(__dirname, '..', 'build', 'index.html')}`
   )
 
   if (isDev) {

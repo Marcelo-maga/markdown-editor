@@ -1,7 +1,6 @@
-const { app, BrowserWindow } = require('electron')
-
-const path = require('path')
 const isDev = require('electron-is-dev')
+const path = require('path')
+const { app, BrowserWindow, ipcMain } = require('electron')
 
 let mainWindow
 
@@ -9,11 +8,14 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     minWidth: 1050,
     minHeight: 600,
+    frame: false,
     webPreferences: {
-      nativeWindowOpen: true,
       nodeIntegration: true
     }
   })
+
+  // mainWindow.setMenu(null)
+
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
@@ -28,7 +30,11 @@ function createWindow () {
     mainWindow = null
   })
 }
-
+async function registerListeners () {
+  ipcMain.on('close', () => {
+    console.log('cu')
+  })
+}
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {

@@ -1,6 +1,8 @@
 import React from 'react'
-import { Routes } from './routes'
 import { ThemeProvider } from 'styled-components'
+
+import { Header } from './components/Header'
+import { Editor } from './components/Editor'
 
 // GlobalStyles
 import GlobalStyles from './styles/global'
@@ -13,7 +15,8 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={dark}>
       <GlobalStyles />
-      <Routes />
+      <Header />
+      <Editor />
     </ThemeProvider>
   )
 }
